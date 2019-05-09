@@ -1,3 +1,4 @@
+/* eslint-disable import/first */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -48,8 +49,14 @@ import * as serviceWorker from './serviceWorker';
 /**
  * D3
  */
-import TimeLine, { historicDatesForSkiing } from './components/8-TimeLine/TimeLine';
-ReactDOM.render(<TimeLine name='History of skiing' data={historicDatesForSkiing} />, document.getElementById('root'));
+// import TimeLine, { historicDatesForSkiing } from './components/8-TimeLine/TimeLine';
+// ReactDOM.render(<TimeLine name='History of skiing' data={historicDatesForSkiing} />, document.getElementById('root'));
+
+/**
+ * High Order Component
+ */
+import RandomUser from './components/9-RandomUser';
+ReactDOM.render(<RandomUser count={10} />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
