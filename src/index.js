@@ -55,8 +55,20 @@ import * as serviceWorker from './serviceWorker';
 /**
  * High Order Component
  */
-import RandomUser from './components/9-RandomUser';
-ReactDOM.render(<RandomUser count={10} />, document.getElementById('root'));
+// import RandomUser from './components/9-RandomUser';
+// ReactDOM.render(<RandomUser count={10} />, document.getElementById('root'));
+
+/**
+ * Flux
+ */
+import { actions, store } from './components/10-Countdown';
+import { Countdown } from './components/10-Countdown/View';
+const render = count =>
+  ReactDOM.render(<Countdown count={count} {...actions} />, document.getElementById('root'));
+
+store.on('TICK', () => render(store._count));
+store.on('RESET', () => render(store._count));
+render(store._count);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
