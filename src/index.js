@@ -61,14 +61,116 @@ import * as serviceWorker from './serviceWorker';
 /**
  * Flux
  */
-import { actions, store } from './components/10-Countdown';
-import { Countdown } from './components/10-Countdown/View';
-const render = count =>
-  ReactDOM.render(<Countdown count={count} {...actions} />, document.getElementById('root'));
+// import { actions, store } from './components/10-Countdown';
+// import { Countdown } from './components/10-Countdown/View';
+// const render = count =>
+//   ReactDOM.render(<Countdown count={count} {...actions} />, document.getElementById('root'));
 
-store.on('TICK', () => render(store._count));
-store.on('RESET', () => render(store._count));
-render(store._count);
+// store.on('TICK', () => render(store._count));
+// store.on('RESET', () => render(store._count));
+
+// render(store._count);
+
+/**
+ * Redux
+ */
+import ActionConstants from './components/11-Colors/constants';
+import { store, storeLocalStorage, print } from './components/11-Colors/store';
+import {
+  rateColor,
+  removeColor,
+  addColor,
+  sortColors,
+} from './components/11-Colors/creators';
+
+console.log('List of colors before insert', store.getState().colors);
+
+store.dispatch({
+  type: ActionConstants.ADD_COLOR,
+  id: Date.now(),
+  title: 'Party Pink',
+  color: '#F142FF',
+  timestamp: new Date().toString(),
+});
+
+console.log('List of colors after insert', store.getState().colors);
+
+let [, , color] = store.getState().colors;
+
+console.log('Color rating before update', color.rating);
+
+store.dispatch({
+  type: ActionConstants.RATE_COLOR,
+  id: color.id,
+  rating: 5,
+});
+
+[, , color] = store.getState().colors;
+
+console.log('Color rating after update', color.rating);
+
+// Subscribe to Store
+
+console.log('Subscribing to store');
+store.subscribe(() => console.log('Color count:', store.getState().colors.length));
+
+store.dispatch({
+  type: ActionConstants.ADD_COLOR,
+  id: '2222e1p5-3abl-0p523-30e4-8001l8yf2222',
+  title: 'Party Pink',
+  color: '#F142FF',
+  timestamp: new Date().toString(),
+});
+store.dispatch({
+  type: ActionConstants.ADD_COLOR,
+  id: '3315e1p5-3abl-0p523-30e4-8001l8yf2412',
+  title: 'Big Blue',
+  color: '#0000FF',
+  timestamp: new Date().toString(),
+});
+store.dispatch({
+  type: ActionConstants.RATE_COLOR,
+  id: '2222e1p5-3abl-0p523-30e4-8001l8yf2222',
+  rating: 5,
+});
+store.dispatch({
+  type: ActionConstants.REMOVE_COLOR,
+  id: '3315e1p5-3abl-0p523-30e4-8001l8yf2412',
+});
+
+// Local Storage Store
+
+storeLocalStorage.subscribe(() => {
+  localStorage['redux-store'] = JSON.stringify(store.getState());
+
+  console.log('Local Storage Store current color count', storeLocalStorage.getState().colors.length);
+  console.log('Local Storage Store current state', storeLocalStorage.getState());
+});
+
+
+storeLocalStorage.dispatch({
+  type: ActionConstants.ADD_COLOR,
+  id: '3315e1p5-3abl-0p523-30e4-8001l8yf2412',
+  title: 'Party Pink',
+  color: '#F142FF',
+  timestamp: new Date().toString(),
+});
+storeLocalStorage.dispatch({
+  type: ActionConstants.REMOVE_COLOR,
+  id: '3315e1p5-3abl-0p523-30e4-8001l8yf2412',
+});
+
+// Action Creators
+
+store.dispatch(rateColor('2222e1p5-3abl-0p523-30e4-8001l8yf2222', 5));
+store.dispatch(removeColor('2222e1p5-3abl-0p523-30e4-8001l8yf2222'));
+store.dispatch(addColor('Party Pink', '#F142FF'));
+store.dispatch(sortColors('title'));
+
+// Compose (various functions into a single function)
+
+print(store.getState());
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
