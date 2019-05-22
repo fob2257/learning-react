@@ -75,6 +75,7 @@ import * as serviceWorker from './serviceWorker';
  * Redux
  */
 /*
+import { v4 } from 'uuid';
 import ActionConstants from './components/11-Colors/constants';
 import { store, storeLocalStorage, print } from './components/11-Colors/store';
 import {
@@ -88,7 +89,7 @@ console.log('List of colors before insert', store.getState().colors);
 
 store.dispatch({
   type: ActionConstants.ADD_COLOR,
-  id: Date.now(),
+  id: v4(),
   title: 'Party Pink',
   color: '#F142FF',
   timestamp: new Date().toString(),
@@ -176,15 +177,30 @@ print(store.getState());
 /**
  * Redux (Middleware)
  */
+// import storeFactory from './components/12-StoreFactory';
+// import { addColor } from './components/11-Colors/creators';
+
+// const store = storeFactory(true);
+
+// store.dispatch(addColor('Party Pink', '#F142FF'));
+// store.dispatch(addColor('#FFFFFF', 'Bright White'));
+// store.dispatch(addColor('#00FF00', 'Lawn'));
+// store.dispatch(addColor('#0000FF', 'Big Blue'));
+
+/**
+ * Store via Context
+ */
+import AppColor from './components/13-Colors/AppColor';
 import storeFactory from './components/12-StoreFactory';
-import { addColor } from './components/11-Colors/creators';
 
-const store = storeFactory(true);
+const store = storeFactory();
 
-store.dispatch(addColor('Party Pink', '#F142FF'));
-store.dispatch(addColor('#FFFFFF', 'Bright White'));
-store.dispatch(addColor('#00FF00', 'Lawn'));
-store.dispatch(addColor('#0000FF', 'Big Blue'));
+const render = () =>
+  ReactDOM.render(<AppColor store={store} />, document.getElementById('root'));
+
+store.subscribe(render);
+
+render();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
