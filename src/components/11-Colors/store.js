@@ -3,7 +3,7 @@ import { createStore, combineReducers, compose } from 'redux';
 import { colors, sort } from './reducers';
 import data from './data.json';
 
-const initialState = data;
+export const initialState = data;
 
 export const store = createStore(combineReducers({ colors, sort }), initialState);
 

@@ -74,6 +74,7 @@ import * as serviceWorker from './serviceWorker';
 /**
  * Redux
  */
+/*
 import ActionConstants from './components/11-Colors/constants';
 import { store, storeLocalStorage, print } from './components/11-Colors/store';
 import {
@@ -170,7 +171,20 @@ store.dispatch(sortColors('title'));
 // Compose (various functions into a single function)
 
 print(store.getState());
+*/
 
+/**
+ * Redux (Middleware)
+ */
+import storeFactory from './components/12-StoreFactory';
+import { addColor } from './components/11-Colors/creators';
+
+const store = storeFactory(true);
+
+store.dispatch(addColor('Party Pink', '#F142FF'));
+store.dispatch(addColor('#FFFFFF', 'Bright White'));
+store.dispatch(addColor('#00FF00', 'Lawn'));
+store.dispatch(addColor('#0000FF', 'Big Blue'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
