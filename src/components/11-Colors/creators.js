@@ -21,6 +21,7 @@ export const addColor = (title, color) =>
     timestamp: new Date().toDateString(),
     title,
     color,
+    rating: 0,
   });
 
 export const sortColors = sortedBy =>
