@@ -5,10 +5,13 @@
   "dependencies": {
     "d3": "^5.9.2",
     "isomorphic-fetch": "^2.2.1",
+    "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-icons": "^3.7.0",
     "react-redux": "^7.0.3",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "redux": "^4.0.1",
     "uuid": "^3.3.2"

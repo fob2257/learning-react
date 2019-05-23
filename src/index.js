@@ -205,19 +205,32 @@ print(store.getState());
 /**
  * React Redux
  */
-import { Provider } from 'react-redux';
+// import { Provider } from 'react-redux';
 
-import AppColor from './components/15-Colors/AppColor';
-import storeFactory from './components/12-StoreFactory';
+// import AppColor from './components/15-Colors/AppColor';
+// import storeFactory from './components/12-StoreFactory';
 
-const store = storeFactory();
+// const store = storeFactory();
 
-ReactDOM.render(
-  <Provider store={store}>
-    <AppColor />
-  </Provider>,
-  document.getElementById('root')
-);
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <AppColor />
+//   </Provider>,
+//   document.getElementById('root')
+// );
+
+/**
+ * React Router DOM
+ */
+// import { AppRouter } from './components/16-Router';
+// ReactDOM.render(<AppRouter />, document.getElementById('root'));
+
+// import { AppRouter } from './components/17-Page-Template';
+// ReactDOM.render(<AppRouter />, document.getElementById('root'));
+
+import { AppRouter } from './components/18-Colors';
+ReactDOM.render(<AppRouter />, document.getElementById('root'));
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
