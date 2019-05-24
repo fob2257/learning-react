@@ -228,7 +228,13 @@ print(store.getState());
 // import { AppRouter } from './components/17-Page-Template';
 // ReactDOM.render(<AppRouter />, document.getElementById('root'));
 
-import { AppRouter } from './components/18-Colors';
+// import { AppRouter } from './components/18-Colors';
+// ReactDOM.render(<AppRouter />, document.getElementById('root'));
+
+/**
+ * Redux Thunk
+ */
+import { AppRouter } from './components/19-Colors';
 ReactDOM.render(<AppRouter />, document.getElementById('root'));
 
 
